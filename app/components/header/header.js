@@ -1,7 +1,7 @@
 'use strict';
 
-/* module.exports = function header() {
-  var model = {
+module.exports = function header() {
+  /* var model = {
     boolean: true
   };
   var service = {
@@ -15,5 +15,6 @@
   function updateModelBoolean(bool) {
     service.model.boolean = bool;
     console.log(service.model.boolean);
-  }
-}; */
+  } */
+  console.log('chicken wing');
+};
