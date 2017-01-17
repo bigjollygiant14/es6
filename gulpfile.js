@@ -3,7 +3,8 @@
 let gulp = require('gulp'),
     bs = require('browser-sync').create(),
     browserify = require('browserify'),
-    source = require('vinyl-source-stream');
+    source = require('vinyl-source-stream'),
+    babelify = require('babelify');
 
 let config = {
   dest: 'public/app',
@@ -20,7 +21,11 @@ gulp.task('start', function() {
 });
 
 gulp.task('browserify', function() {
-  return browserify({entries: ['app/main.js']})
+  return browserify({
+    debug: true,
+    entries: ['app/main.js']
+  })
+    .transform(babelify)
     .bundle()
     .pipe(source('main.js'))
     .pipe(gulp.dest(config.dest));
@@ -43,10 +48,10 @@ gulp.task('default', ['browserify', 'html', 'start'], function() {
 
 /**
 ** Front End **
-* Browserify - Bundling
-* Pug - Templating
+*# Browserify - Bundling
 * ES6 - JS
-* Angular 2 - FE
+* Vue
+* Pug - Templating
 * Stylus - Styles
 * Karma, Jade - Testing
 */
