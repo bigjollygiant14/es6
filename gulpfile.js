@@ -49,7 +49,7 @@ gulp.task('default', ['browserify', 'html', 'start'], function() {
 /**
 ** Front End **
 *# Browserify - Bundling
-* ES6 - JS
+*# ES6 - JS
 * Vue
 * Pug - Templating
 * Stylus - Styles
