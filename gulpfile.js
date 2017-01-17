@@ -3,13 +3,13 @@
 let gulp = require('gulp'),
     bs = require('browser-sync').create(),
     browserify = require('browserify'),
-    source = require('vinyl-source-stream'),
-    babelify = require('babelify');
+    babelify = require('babelify'),
+    source = require('vinyl-source-stream');
 
 let config = {
   dest: 'public/app',
   watch: ['app/**/*.js', 'app/*.html'],
-  watchTasks: ['browserify', 'html', 'reload']
+  watchTasks: ['browserify:watch', 'html:watch']
 }
 
 gulp.task('start', function() {
@@ -21,14 +21,16 @@ gulp.task('start', function() {
 });
 
 gulp.task('browserify', function() {
-  return browserify({
-    debug: true,
-    entries: ['app/main.js']
-  })
+   return browserify({entries: ['app/main.js']})
     .transform(babelify)
     .bundle()
     .pipe(source('main.js'))
     .pipe(gulp.dest(config.dest));
+});
+
+gulp.task('browserify:watch', ['browserify'], function(done) {
+  bs.reload();
+  done();
 });
 
 gulp.task('html', function() {
@@ -36,24 +38,30 @@ gulp.task('html', function() {
     .pipe(gulp.dest(config.dest));
 });
 
+gulp.task('html:watch', ['html'], function(done) {
+  bs.reload();
+  done();
+})
+
 gulp.task('reload', function() {
   bs.reload();
 });
 
 gulp.task('default', ['browserify', 'html', 'start'], function() {
-  gulp.watch(config.watch, config.watchTasks);
+  gulp.watch(['app/*.html'], ['html:watch']);
+  gulp.watch(['app/**/*.js'], ['browserify:watch']);
 });
-
 
 
 /**
 ** Front End **
 *# Browserify - Bundling
 *# ES6 - JS
-* Vue
+* Vue - FE
+* JS Lint - JS Linter
+* Karma, Jade - Testing
 * Pug - Templating
 * Stylus - Styles
-* Karma, Jade - Testing
 */
 
 /**
