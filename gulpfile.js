@@ -43,8 +43,15 @@ gulp.task('default', ['browserify', 'html', 'start'], function() {
 
 /**
 ** Front End **
-* Handlebars - Templating
+* Browserify - Bundling
+* Pug - Templating
 * ES6 - JS
+* Angular 2 - FE
 * Stylus - Styles
 * Karma, Jade - Testing
+*/
+
+/**
+** Back End **
+* Mongo - DB
 */
