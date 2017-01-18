@@ -30,7 +30,10 @@
     "gulp-babel": "^6.1.2",
     "method-override": "^2.3.6",
     "path": "^0.12.7",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "vueify": "^9.4.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "vue": "^2.1.10"
+  }
 }

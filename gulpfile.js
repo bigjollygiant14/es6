@@ -3,13 +3,12 @@
 let gulp = require('gulp'),
     bs = require('browser-sync').create(),
     browserify = require('browserify'),
+    vueify = require('vueify'),
     babelify = require('babelify'),
     source = require('vinyl-source-stream');
 
 let config = {
-  dest: 'public/app',
-  watch: ['app/**/*.js', 'app/*.html'],
-  watchTasks: ['browserify:watch', 'html:watch']
+  dest: 'public/app'
 }
 
 gulp.task('start', function() {
@@ -23,6 +22,7 @@ gulp.task('start', function() {
 gulp.task('browserify', function() {
    return browserify({entries: ['app/main.js']})
     .transform(babelify)
+    .transform(vueify)
     .bundle()
     .pipe(source('main.js'))
     .pipe(gulp.dest(config.dest));
@@ -41,15 +41,15 @@ gulp.task('html', function() {
 gulp.task('html:watch', ['html'], function(done) {
   bs.reload();
   done();
-})
+});
 
 gulp.task('reload', function() {
   bs.reload();
 });
 
-gulp.task('default', ['browserify', 'html', 'start'], function() {
+gulp.task('default', ['browserify', 'start'], function() {
   gulp.watch(['app/*.html'], ['html:watch']);
-  gulp.watch(['app/**/*.js'], ['browserify:watch']);
+  gulp.watch(['app/**/*.vue'], ['browserify:watch']);
 });
 
 
@@ -57,7 +57,7 @@ gulp.task('default', ['browserify', 'html', 'start'], function() {
 ** Front End **
 *# Browserify - Bundling
 *# ES6 - JS
-* Vue - FE
+*# Vue - FE
 * JS Lint - JS Linter
 * Karma, Jade - Testing
 * Pug - Templating
