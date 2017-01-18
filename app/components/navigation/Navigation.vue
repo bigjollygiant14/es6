@@ -1,17 +1,24 @@
 <template>
   <div id="navigation">
-    <ul>
-      <li v-for="link in links"><a :href="link.link">{{link.name}}</a></li>
-    </ul>
+    <h4>{{message}}</h4>
+    <div class="nav-links">
+      <router-link :to="link.link" v-for="link in links">{{link.name}}</router-link>
+    </div>
   </div>
 </template>
+<!--<template lang="jade">
+  div#navigation
+    h4 {{message}} Hi
+    div.nav-links
+      router-link(:to="link.link" v-for="link in links") {{link.name}}
+</template>-->
 
 <script>
 export default {
   name: 'navigation',
   data () {
     return {
-      message: 'Welcome to Your Vue.js App',
+      message: 'Navigation Component',
       links: [
         {
           name: 'Home',
@@ -29,8 +36,16 @@ export default {
 }
 </script>
 
-<style scoped>
-  a {
+<!-- <style scoped>
+  .nav-links a {
     color: black;
+    text-decoration: none;
+    padding: 5px;
   }
+</style> -->
+<style lang="stylus" scoped>
+.nav-links a 
+  color black
+  text-decoration none
+  padding 5px
 </style>

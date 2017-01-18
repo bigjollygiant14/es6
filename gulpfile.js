@@ -58,6 +58,7 @@ gulp.task('default', ['browserify', 'start'], function() {
 *# Browserify - Bundling
 *# ES6 - JS
 *# Vue - FE
+*# | Router 
 * JS Lint - JS Linter
 * Karma, Jade - Testing
 * Pug - Templating
