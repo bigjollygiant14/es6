@@ -6,6 +6,8 @@
 </template>
 
 <script>
+// import someOtherComponent from 'reference'
+
 export default {
   name: 'navigation',
   data () {
@@ -24,7 +26,10 @@ export default {
         }
       ]
     }
-  }
+  }/*,
+  components: {
+    someOtherComponent
+  }*/
 }
 </script>
 

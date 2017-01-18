@@ -1,6 +1,8 @@
 
 ## Vue project that uses:
 * Node.js
+* Express
+* Browser Sync
 * Browserify
 * Babel (ES 6 [ES 2015])
 * Vue
