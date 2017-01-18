@@ -7,8 +7,8 @@
 
 <script>
 import Hello from './components/Hello.vue'
-import Navigation from './components/navigation/Navigation.vue'
-import Account from './components/account/Account.vue'
+import Navigation from './components/Navigation.vue'
+import Account from './components/Account.vue'
 
 export default {
   name: 'app',

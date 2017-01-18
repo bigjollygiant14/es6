@@ -8,7 +8,7 @@ import App from './App.vue'
 Vue.use(VueRouter)
 
 import Hello from './components/Hello.vue'
-import Account from './components/account/Account.vue'
+import Account from './components/Account.vue'
 
 const routes = [
   {
