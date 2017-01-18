@@ -61,8 +61,8 @@ gulp.task('default', ['browserify', 'start'], function() {
 *# | Router 
 * JS Lint - JS Linter
 * Karma, Jade - Testing
-* Pug - Templating
-* Stylus - Styles
+*# Pug - Templating
+*# Stylus - Styles
 */
 
 /**
