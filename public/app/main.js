@@ -139,7 +139,7 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"navigation"}},[_c('h4',[_vm._v(_vm._s(_vm.message))]),_vm._v(" "),_c('div',{staticClass:"nav-links"},_vm._l((_vm.links),function(link){return _c('router-link',{attrs:{"to":link.link}},[_vm._v(_vm._s(link.name))])}))])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"navigation"}},[_c('h4',[_vm._v(_vm._s(_vm.message)+" Bye")]),_c('div',{staticClass:"nav-links"},_vm._l((_vm.links),function(link){return _c('router-link',{attrs:{"to":link.link}},[_vm._v(_vm._s(link.name))])}))])}
 __vue__options__.staticRenderFns = []
 __vue__options__._scopeId = "data-v-ad24cf72"
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
