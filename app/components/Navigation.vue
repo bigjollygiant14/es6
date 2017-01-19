@@ -26,10 +26,10 @@ export default {
         }
       ]
     }
-  }/*,
+  }/* ,
   components: {
     someOtherComponent
-  }*/
+  } */
 }
 </script>
 

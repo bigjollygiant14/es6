@@ -55,6 +55,16 @@ exports.default = {
     return {
       message: 'My Account'
     };
+  },
+  methods: function methods() {
+    return {
+      init: function init() {
+        alert('poo');
+      },
+      dance: function dance(input) {
+        alert(input);
+      }
+    };
   }
 };
 })()
@@ -193,6 +203,7 @@ var router = new _vueRouter2.default({
   routes: routes
 });
 
+/* eslint-disable no-new */
 new _vue2.default({
   router: router,
   el: '#app',

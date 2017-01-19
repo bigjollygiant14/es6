@@ -11,6 +11,16 @@ export default {
     return {
       message: 'My Account'
     }
+  },
+  methods () {
+    return {
+      init: () => {
+        alert('poo')
+      },
+      dance: (input) => {
+        alert(input)
+      }
+    }
   }
 }
 </script>

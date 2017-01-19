@@ -5,7 +5,8 @@ let gulp = require('gulp'),
     browserify = require('browserify'),
     vueify = require('vueify'),
     babelify = require('babelify'),
-    source = require('vinyl-source-stream');
+    source = require('vinyl-source-stream'),
+    eslint = require('gulp-eslint');
 
 let config = {
   dest: 'public/app'
@@ -19,7 +20,7 @@ gulp.task('start', function() {
   });
 });
 
-gulp.task('browserify', function() {
+gulp.task('browserify', ['vet:js'], () => {
    return browserify({entries: ['app/main.js']})
     .transform(babelify)
     .transform(vueify)
@@ -28,26 +29,33 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest(config.dest));
 });
 
-gulp.task('browserify:watch', ['browserify'], function(done) {
+gulp.task('browserify:watch', ['browserify'], (done) => {
   bs.reload();
   done();
 });
 
-gulp.task('html', function() {
+gulp.task('vet:js', () => {
+  return gulp.src(['app/main.js','app/**/*.vue','!node_modules/**'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
+gulp.task('html', () => {
   return gulp.src('app/index.html')
     .pipe(gulp.dest(config.dest));
 });
 
-gulp.task('html:watch', ['html'], function(done) {
+gulp.task('html:watch', ['html'], (done) => {
   bs.reload();
   done();
 });
 
-gulp.task('reload', function() {
+gulp.task('reload', () => {
   bs.reload();
 });
 
-gulp.task('default', ['browserify', 'start'], function() {
+gulp.task('default', ['browserify', 'start'], () => {
   gulp.watch(['app/*.html'], ['html:watch']);
   gulp.watch(['app/**/*.vue'], ['browserify:watch']);
 });
