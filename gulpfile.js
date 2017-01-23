@@ -3,15 +3,18 @@
 let gulp = require('gulp'),
     bs = require('browser-sync').create(),
     browserify = require('browserify'),
-    source = require('vinyl-source-stream');
+    vueify = require('vueify'),
+    babelify = require('babelify'),
+    source = require('vinyl-source-stream'),
+    eslint = require('gulp-eslint'),
+    karma = require('karma').Server;
 
 let config = {
-  dest: 'public/app',
-  watch: ['app/**/*.js', 'app/*.html'],
-  watchTasks: ['browserify', 'html', 'reload']
+  dest: 'public/app'
 }
 
-gulp.task('start', function() {
+/* Server */
+gulp.task('start', ['browserify', 'html'], function() {
   bs.init({
     server: {
       baseDir: './public/app'
@@ -19,32 +22,75 @@ gulp.task('start', function() {
   });
 });
 
-gulp.task('browserify', function() {
-  return browserify({entries: ['app/main.js']})
+/* Browserify / Vue */
+gulp.task('browserify', ['vet:js'], () => {
+   return browserify({entries: ['app/main.js']})
+    .transform(babelify)
+    .transform(vueify)
     .bundle()
-    .pipe(source('main.js'))
+    .pipe(source('bundle.js'))
     .pipe(gulp.dest(config.dest));
 });
 
-gulp.task('html', function() {
+gulp.task('browserify:watch', ['browserify'], (done) => {
+  bs.reload();
+  done();
+});
+
+/* JS */
+gulp.task('vet:js', () => {
+  return gulp.src(['app/main.js','app/**/*.vue','!node_modules/**'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
+/* Test */
+gulp.task('test', ['browserify'], function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, function() {
+    done();
+  });
+});
+
+/* HTML */
+gulp.task('html', () => {
   return gulp.src('app/index.html')
     .pipe(gulp.dest(config.dest));
 });
 
-gulp.task('reload', function() {
+gulp.task('html:watch', ['html'], (done) => {
+  bs.reload();
+  done();
+});
+
+/* Util */
+gulp.task('reload', () => {
   bs.reload();
 });
 
-gulp.task('default', ['browserify', 'html', 'start'], function() {
-  gulp.watch(config.watch, config.watchTasks);
+/* Start */
+gulp.task('default', ['browserify', 'test', 'html', 'start'], () => {
+  gulp.watch(['app/*.html'], ['html:watch']);
+  gulp.watch(['app/**/*.vue', 'app/**/*.styl'], ['browserify:watch']);
 });
-
-
 
 /**
 ** Front End **
-* Handlebars - Templating
-* ES6 - JS
-* Stylus - Styles
-* Karma, Jade - Testing
+*# Browserify - Bundling
+*# ES6 - JS
+*# Vue - FE
+*# | Router 
+*# JS Lint - JS Linter
+*# Karma, Jasmine - Testing
+*# Pug - Templating
+*# Stylus - Styles
+* Jeet grid?
+*/
+
+/**
+** Back End **
+* Mongo - DB
 */
