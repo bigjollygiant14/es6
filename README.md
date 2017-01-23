@@ -9,6 +9,10 @@
   * Vue Router
   * Pug
   * Stylus
+* Unit Testing
+  * Karma
+  * Jasmine
+* JS Linter (EsLint)
 
 ## To Run:
 * Clone Repo
@@ -18,9 +22,5 @@
 * Run Gulp (`gulp`)
 
 ## Coming Soon:
-* Unit Testing
-  * Karma
-  * Jasmine
 * MongoDB
 * Simple API
-* JS Linter
