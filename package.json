@@ -11,7 +11,7 @@
     "url": "git+https://github.com/bigjollygiant14/es6.git"
   },
   "keywords": [
-    "es6", "vue", "karma", "jasmine", "pug", "stylus"
+    "es6", "vue", "karma", "jasmine", "pug", "stylus", "browserify"
   ],
   "author": "bigjollygiant14",
   "license": "ISC",

@@ -84,7 +84,7 @@ gulp.task('default', ['browserify', 'test', 'html', 'start'], () => {
 *# Vue - FE
 *# | Router 
 *# JS Lint - JS Linter
-* Karma, Jasmine - Testing
+*# Karma, Jasmine - Testing
 *# Pug - Templating
 *# Stylus - Styles
 * Jeet grid?
