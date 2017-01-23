@@ -6,15 +6,14 @@ let gulp = require('gulp'),
     vueify = require('vueify'),
     babelify = require('babelify'),
     source = require('vinyl-source-stream'),
-    eslint = require('gulp-eslint'),
-    runSequence = require('run-sequence');
+    eslint = require('gulp-eslint');
 
 let config = {
   dest: 'public/app'
 }
 
 /* Server */
-gulp.task('start', function() {
+gulp.task('start', ['browserify', 'html'], function() {
   bs.init({
     server: {
       baseDir: './public/app'
@@ -62,11 +61,7 @@ gulp.task('reload', () => {
 });
 
 /* Start */
-gulp.task('default', ['browserify', 'html'], (done) => {
-  runSequence('start', () => {
-    done();
-  });
-
+gulp.task('default', ['browserify', 'html', 'start'], () => {
   gulp.watch(['app/*.html'], ['html:watch']);
   gulp.watch(['app/**/*.vue', 'app/**/*.styl'], ['browserify:watch']);
 });
