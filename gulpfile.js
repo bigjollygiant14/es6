@@ -76,6 +76,7 @@ gulp.task('default', ['browserify', 'html', 'start'], () => {
 * Karma, Jasmine - Testing
 *# Pug - Templating
 *# Stylus - Styles
+* Jeet grid?
 */
 
 /**
