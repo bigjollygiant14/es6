@@ -11,6 +11,7 @@
           td {{ user.lName }}
           td {{ user.role }}
           td {{ user.phone }}
+          td {{ user.email }}
 </template>
 
 <script>
@@ -18,17 +19,19 @@ export default {
   name: 'list',
   data () {
     return {
-      tableHeaders: ['First Name', 'Last Name', 'Role', 'Contact'],
+      tableHeaders: ['First Name', 'Last Name', 'Role', 'Phone', 'Email'],
       tableData: [{
         fName: 'Peter',
         lName: 'Piper',
         role: 'Engineer',
-        phone: '5555555555'
+        phone: '5555555555',
+        email: 'p.piper@gmail.com'
       }, {
         fName: 'Icarus',
         lName: 'Sol',
         role: 'Design',
-        phone: '1234567890'
+        phone: '1234567890',
+        email: 'i.sol@gmail.com'
       }]
     }
   },
