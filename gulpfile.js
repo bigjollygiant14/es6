@@ -6,12 +6,14 @@ let gulp = require('gulp'),
     vueify = require('vueify'),
     babelify = require('babelify'),
     source = require('vinyl-source-stream'),
-    eslint = require('gulp-eslint');
+    eslint = require('gulp-eslint'),
+    runSequence = require('run-sequence');
 
 let config = {
   dest: 'public/app'
 }
 
+/* Server */
 gulp.task('start', function() {
   bs.init({
     server: {
@@ -20,12 +22,13 @@ gulp.task('start', function() {
   });
 });
 
+/* Browserify / Vue */
 gulp.task('browserify', ['vet:js'], () => {
    return browserify({entries: ['app/main.js']})
     .transform(babelify)
     .transform(vueify)
     .bundle()
-    .pipe(source('main.js'))
+    .pipe(source('bundle.js'))
     .pipe(gulp.dest(config.dest));
 });
 
@@ -34,13 +37,15 @@ gulp.task('browserify:watch', ['browserify'], (done) => {
   done();
 });
 
+/* JS */
 gulp.task('vet:js', () => {
-  return gulp.src(['app/main.js','app/**/*.vue','app/**/*.js','!node_modules/**'])
+  return gulp.src(['app/main.js','app/**/*.vue','!node_modules/**'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
+/* HTML */
 gulp.task('html', () => {
   return gulp.src('app/index.html')
     .pipe(gulp.dest(config.dest));
@@ -51,15 +56,20 @@ gulp.task('html:watch', ['html'], (done) => {
   done();
 });
 
+/* Util */
 gulp.task('reload', () => {
   bs.reload();
 });
 
-gulp.task('default', ['browserify', 'start'], () => {
-  gulp.watch(['app/*.html'], ['html:watch']);
-  gulp.watch(['app/**/*.vue', 'app/**/*.js'], ['browserify:watch']);
-});
+/* Start */
+gulp.task('default', ['browserify', 'html'], (done) => {
+  runSequence('start', () => {
+    done();
+  });
 
+  gulp.watch(['app/*.html'], ['html:watch']);
+  gulp.watch(['app/**/*.vue', 'app/**/*.styl'], ['browserify:watch']);
+});
 
 /**
 ** Front End **
@@ -67,8 +77,8 @@ gulp.task('default', ['browserify', 'start'], () => {
 *# ES6 - JS
 *# Vue - FE
 *# | Router 
-* JS Lint - JS Linter
-* Karma, Jade - Testing
+*# JS Lint - JS Linter
+* Karma, Jasmine - Testing
 *# Pug - Templating
 *# Stylus - Styles
 */

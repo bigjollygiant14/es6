@@ -3,10 +3,12 @@
     h1 {{ message }}
     button(v-on:click="updateCount()") Click me to increment by one
     div {{ count }}
+    List(tableTitle="Fancy List")
 </template>
 
 <script>
 // import userFactory from '../shared/user.factory.js'
+import List from './List.vue'
 
 export default {
   name: 'account',
@@ -28,8 +30,15 @@ export default {
       let vm = this
       vm.count += 1
     }
+  },
+  components: {
+    List
   }
 }
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+  h1 {
+    color: blue;
+  }
+</style>
