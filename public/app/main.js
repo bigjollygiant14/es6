@@ -39,7 +39,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-8aee10c0", __vue__options__)
   } else {
-    hotAPI.reload("data-v-8aee10c0", __vue__options__)
+    hotAPI.rerender("data-v-8aee10c0", __vue__options__)
   }
 })()}
 },{"./components/Account.vue":2,"./components/Hello.vue":3,"./components/Navigation.vue":4,"vue":9,"vue-hot-reload-api":7}],2:[function(require,module,exports){
@@ -53,25 +53,29 @@ exports.default = {
   name: 'account',
   data: function data() {
     return {
-      message: 'My Account'
+      message: 'My Account',
+      count: 0
     };
   },
-  methods: function methods() {
-    return {
-      init: function init() {
-        alert('poo');
-      },
-      dance: function dance(input) {
-        alert(input);
-      }
-    };
+  created: function created() {
+    console.log('More Event Hooks Here: ' + 'https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram');
+  },
+  beforeUpdate: function beforeUpdate() {
+    console.log('before update');
+  },
+
+  methods: {
+    updateCount: function updateCount() {
+      var vm = this;
+      vm.count += 1;
+    }
   }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"account"}},[_c('h1',[_vm._v(_vm._s(_vm.message))])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"account"}},[_c('h1',[_vm._v(_vm._s(_vm.message))]),_c('button',{on:{"click":function($event){_vm.updateCount()}}},[_vm._v("Click me to increment by one")]),_c('div',[_vm._v(_vm._s(_vm.count))])])}
 __vue__options__.staticRenderFns = []
 __vue__options__._scopeId = "data-v-427d6a45"
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
@@ -116,7 +120,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-12441e6a", __vue__options__)
   } else {
-    hotAPI.reload("data-v-12441e6a", __vue__options__)
+    hotAPI.rerender("data-v-12441e6a", __vue__options__)
   }
 })()}
 },{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],4:[function(require,module,exports){
@@ -160,7 +164,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-71e806ac", __vue__options__)
   } else {
-    hotAPI.reload("data-v-71e806ac", __vue__options__)
+    hotAPI.rerender("data-v-71e806ac", __vue__options__)
   }
 })()}
 },{"vue":9,"vue-hot-reload-api":7,"vueify/lib/insert-css":10}],5:[function(require,module,exports){
@@ -211,6 +215,7 @@ new _vue2.default({
     return h(_App2.default);
   }
 });
+/* eslint-enable no-new */
 
 },{"./App.vue":1,"./components/Account.vue":2,"./components/Hello.vue":3,"vue":9,"vue-router":8}],6:[function(require,module,exports){
 // shim for using process in browser

@@ -35,7 +35,7 @@ gulp.task('browserify:watch', ['browserify'], (done) => {
 });
 
 gulp.task('vet:js', () => {
-  return gulp.src(['app/main.js','app/**/*.vue','!node_modules/**'])
+  return gulp.src(['app/main.js','app/**/*.vue','app/**/*.js','!node_modules/**'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
@@ -57,7 +57,7 @@ gulp.task('reload', () => {
 
 gulp.task('default', ['browserify', 'start'], () => {
   gulp.watch(['app/*.html'], ['html:watch']);
-  gulp.watch(['app/**/*.vue'], ['browserify:watch']);
+  gulp.watch(['app/**/*.vue', 'app/**/*.js'], ['browserify:watch']);
 });
 
 
