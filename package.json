@@ -11,7 +11,13 @@
     "url": "git+https://github.com/bigjollygiant14/es6.git"
   },
   "keywords": [
-    "es6", "vue", "karma", "jasmine", "pug", "stylus", "browserify"
+    "es6",
+    "vue",
+    "karma",
+    "jasmine",
+    "pug",
+    "stylus",
+    "browserify"
   ],
   "author": "bigjollygiant14",
   "license": "ISC",
@@ -34,6 +40,7 @@
     "karma": "^1.4.0",
     "karma-browserify": "^5.1.0",
     "karma-jasmine": "^1.1.0",
+    "karma-nyan-reporter": "^0.2.5",
     "karma-phantomjs-launcher": "^1.0.2",
     "method-override": "^2.3.6",
     "path": "^0.12.7",

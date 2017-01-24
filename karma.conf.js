@@ -11,7 +11,9 @@ module.exports = function (config) {
     files: [
       'app/testing/**/*.spec.js'
     ],
-    // reporters: [],
+    reporters: [
+      'nyan'
+    ],
     preprocessors: {
       'app/testing/**/*.spec.js': ['browserify']
     },
