@@ -12,11 +12,19 @@ module.exports = function (config) {
       'app/testing/**/*.spec.js'
     ],
     reporters: [
-      'nyan'
+      'nyan',
+      'coverage'
     ],
     preprocessors: {
-      'app/testing/**/*.spec.js': ['browserify']
+      'app/testing/**/*.spec.js': ['browserify'],
+      'app/main.js': ['coverage']
     },
+    // if you want to continuously re-run tests on file-save,
+    // replace the following line with `autoWatch: true`
+    singleRun: false,
+    // autoWatch: true,
+    concurrency: Infinity,
+    /* Browserify Config */
     browserify: {
       debug: true,
       // needed to enable mocks
@@ -26,9 +34,10 @@ module.exports = function (config) {
         'vueify'
       ]
     },
-    // if you want to continuously re-run tests on file-save,
-    // replace the following line with `autoWatch: true`
-    singleRun: false,
-    concurrency: Infinity
+    /* Coverage Config */
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    }
   })
 }

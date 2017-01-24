@@ -46,13 +46,14 @@ gulp.task('vet:js', () => {
 });
 
 /* Test */
-gulp.task('test', ['browserify'], function (done) {
+// gulp.task('test', ['browserify'], function (done) {
+gulp.task('test', ['browserify'], function () {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
-  }, function() {
-    done();
-  });
+  }/* , function() {
+    // done();
+  } */);
 });
 
 /* HTML */

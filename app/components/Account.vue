@@ -25,7 +25,6 @@ export default {
     console.log('before update')
   },
   methods: {
-    // updateCount: function () {
     updateCount: function () {
       let vm = this
       vm.count += 1
@@ -38,7 +37,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  h1 {
-    color: blue;
-  }
+  h1
+    color blue
 </style>
