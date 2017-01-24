@@ -9,35 +9,47 @@ module.exports = function (config) {
       'jasmine'
     ],
     files: [
+      'app/main.js',
+      'app/**/*.vue',
       'app/testing/**/*.spec.js'
     ],
-    reporters: [
-      'nyan',
-      'coverage'
-    ],
+    exclude: [],
     preprocessors: {
-      'app/testing/**/*.spec.js': ['browserify'],
-      'app/main.js': ['coverage']
+      'app/main.js': ['browserify', 'coverage'],
+      'app/**/*.vue': ['browserify', 'coverage'],
+      'app/testing/**/*.spec.js': ['browserify']
     },
-    // if you want to continuously re-run tests on file-save,
-    // replace the following line with `autoWatch: true`
-    singleRun: false,
-    // autoWatch: true,
-    concurrency: Infinity,
     /* Browserify Config */
     browserify: {
       debug: true,
       // needed to enable mocks
       // plugin: [require('proxyquireify').plugin]
       transform: [
-        ['babelify', {presets: ['es2015']}],
+        ['babelify', {'presets': ['es2015']}],
         'vueify'
       ]
+    },
+    reporters: [
+      'nyan',
+      'coverage'
+    ],
+    /* Nyan Config */
+    nyanReporter: {
+      numberOfRainbowLines: 6,
+      renderOnRunCompleteOnly: false
     },
     /* Coverage Config */
     coverageReporter: {
       type : 'html',
       dir : 'coverage/'
-    }
+    },
+    // if you want to continuously re-run tests on file-save,
+    // replace the following line with `autoWatch: true`
+    // singleRun: false,
+    // autoWatch: true,
+    concurrency: Infinity
   })
+
+  // To Do: Load patterns if you want to update coverage
+  // if (config.coverage) {}
 }

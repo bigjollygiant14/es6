@@ -1,3 +1,5 @@
+'use strict'
+
 import Vue from 'vue'
 import Account from '../../components/Account.vue'
 

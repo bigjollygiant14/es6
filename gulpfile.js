@@ -50,9 +50,9 @@ gulp.task('vet:js', () => {
 gulp.task('test', ['browserify'], function () {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
-    singleRun: true
+    singleRun: false
   }/* , function() {
-    // done();
+    done();
   } */);
 });
 

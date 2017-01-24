@@ -1,3 +1,5 @@
+'use strict'
+
 import Vue from 'vue'
 import List from '../../components/List.vue'
 

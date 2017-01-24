@@ -21,6 +21,10 @@
 * Run the install (`npm install`)
 * Run Gulp (`gulp`)
 
+## To Test:
+* Run `gulp test` - Also runs when you run `gulp`
+
 ## Coming Soon:
 * MongoDB
 * Simple API
+* Coverage
