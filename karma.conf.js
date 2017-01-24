@@ -13,20 +13,27 @@ module.exports = function (config) {
       'app/**/*.vue',
       'app/testing/**/*.spec.js'
     ],
-    exclude: [],
+    exclude: [
+      'node_modules'
+    ],
     preprocessors: {
-      'app/main.js': ['browserify', 'coverage'],
-      'app/**/*.vue': ['browserify', 'coverage'],
-      'app/testing/**/*.spec.js': ['browserify']
+      'app/main.js': [ 'browserify' ],
+      'app/**/*.vue': [ 'browserify' ],
+      'app/testing/**/*.spec.js': [ 'browserify' ]
     },
     /* Browserify Config */
     browserify: {
       debug: true,
       // needed to enable mocks
       // plugin: [require('proxyquireify').plugin]
+      // https://github.com/karma-runner/karma-coverage/issues/157#issuecomment-160555004 (fix) -- browserify-istanbul doesnt work with the transformed version of the source (problem description) - https://github.com/karma-runner/karma-coverage/issues/157#issuecomment-129704614
       transform: [
-        ['babelify', {'presets': ['es2015']}],
-        'vueify'
+        // [ 'browserify-istanbul', {instrumenterConfig: { embedSource: true }} ] // instrumenter: require('isparta'),
+        [ 'vueify' ],
+        [ 'babelify', {'presets': ['es2015']} ],
+        [ 'browserify-istanbul', {
+          instrumenterConfig: { embedSource: true }
+        }]
       ]
     },
     reporters: [
@@ -45,9 +52,10 @@ module.exports = function (config) {
     },
     // if you want to continuously re-run tests on file-save,
     // replace the following line with `autoWatch: true`
-    // singleRun: false,
+    singleRun: true,
     // autoWatch: true,
-    concurrency: Infinity
+    concurrency: Infinity,
+    logLevel: config.LOG_ERROR
   })
 
   // To Do: Load patterns if you want to update coverage

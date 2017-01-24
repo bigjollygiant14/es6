@@ -28,6 +28,9 @@ export default {
     updateCount: function () {
       let vm = this
       vm.count += 1
+    },
+    emilDance: function () {
+      console.log('no pls')
     }
   },
   components: {

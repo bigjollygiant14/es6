@@ -6,8 +6,8 @@ let gulp = require('gulp'),
     vueify = require('vueify'),
     babelify = require('babelify'),
     source = require('vinyl-source-stream'),
-    eslint = require('gulp-eslint'),
-    karma = require('karma').Server;
+    eslint = require('gulp-eslint');
+    // karma = require('karma').Server;
 
 let config = {
   dest: 'public/app'
@@ -45,17 +45,6 @@ gulp.task('vet:js', () => {
     .pipe(eslint.failAfterError());
 });
 
-/* Test */
-// gulp.task('test', ['browserify'], function (done) {
-gulp.task('test', ['browserify'], function () {
-  karma.start({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: false
-  }/* , function() {
-    done();
-  } */);
-});
-
 /* HTML */
 gulp.task('html', () => {
   return gulp.src('app/index.html')
@@ -73,7 +62,7 @@ gulp.task('reload', () => {
 });
 
 /* Start */
-gulp.task('default', ['browserify', 'test', 'html', 'start'], () => {
+gulp.task('default', ['browserify', 'html', 'start'], () => {
   gulp.watch(['app/*.html'], ['html:watch']);
   gulp.watch(['app/**/*.vue', 'app/**/*.styl'], ['browserify:watch']);
 });
